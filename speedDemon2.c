@@ -80,8 +80,9 @@ bool buttonStop = false;
 			{
 				lineCount++;
 				wait(.5);
-					if (lineCount >= 1)
+					if (lineCount >= 2)
 					{
+							wait(x);
 					  	stopMotor(motor1);
 					  	stopMotor(motor2);
 					}
@@ -128,5 +129,5 @@ void turn2Cleanup()
 	resetMotorEncoder(emotor1);
 	sonarCheck = 0;
 	turn2Done = true;
-	wait(2);
+	wait(x);
 }
