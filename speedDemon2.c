@@ -11,8 +11,8 @@
 
 int sonarCheck = 0;
 int lineCount = 0;
-bool turn1Done = true;
-bool turn2Done = true;
+bool turn1Done = false;
+bool turn2Done = false;
 
 void goForward();
 void wallDetect();
@@ -37,7 +37,7 @@ bool buttonStop = false;
 	}
 
 	//scan the environment to see if 1st barrier is observed
-	if (SensorValue(sonar1) <= 50 && SensorValue(sonar1) >= 5 && turn1Done == false)
+	if (SensorValue(sonar1) <= 55 && SensorValue(sonar1) >= 5 && turn1Done == false)
 	{
 			//wall detected
 			wallDetect();
@@ -65,7 +65,7 @@ bool buttonStop = false;
 			if (sonarCheck >= 35)
 			{
 				//start motor encoder for right turn
-				while(abs(getMotorEncoder(emotor1)) <= 400)
+				while(abs(getMotorEncoder(emotor1)) <= 430)
 					{
 						rightTurn();
 					}
@@ -79,10 +79,10 @@ bool buttonStop = false;
 			if (SensorValue(linef1)>= 3000)
 			{
 				lineCount++;
-				wait(.5);
+				wait(.25);
 					if (lineCount >= 2)
 					{
-							wait(x);
+							wait(.2);
 					  	stopMotor(motor1);
 					  	stopMotor(motor2);
 					}
@@ -129,5 +129,5 @@ void turn2Cleanup()
 	resetMotorEncoder(emotor1);
 	sonarCheck = 0;
 	turn2Done = true;
-	wait(x);
+	wait(2.3);
 }
